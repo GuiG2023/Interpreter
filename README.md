@@ -1,7 +1,7 @@
 # CSC 413 - Project Two - The Interpreter
 
-## Student Name  : Name here
+## Student Name  : Guiran Liu
 
-## Student ID    : ID here
+## Student ID    : 923620812
 
-## Student Email : Email here
+## Student Email : gliu@sfsu.edu
