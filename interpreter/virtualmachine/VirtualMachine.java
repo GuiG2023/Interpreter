@@ -17,4 +17,7 @@ public class VirtualMachine {
         this.returnAddress = new Stack<>();
         this.programCounter = 0;
     }
+
+    public void executeProgram() {
+    }
 }
