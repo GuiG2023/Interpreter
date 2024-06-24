@@ -20,4 +20,8 @@ public class VirtualMachine {
 
     public void executeProgram() {
     }
+
+    public int push(int value) {
+        return this.runTimeStack.push(value);
+    }
 }

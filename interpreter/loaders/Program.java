@@ -13,6 +13,7 @@ public class Program {
      * ArrayList
      */
     public Program() {
+        this.program = new ArrayList<>();
 
     }
 
@@ -38,6 +39,7 @@ public class Program {
      * @param c bytecode to be added
      */
     public void addCode(ByteCode c) {
+        this.program.add(c);
 
     }
 

@@ -6,6 +6,8 @@ import interpreter.loaders.InvalidProgramException;
 import interpreter.loaders.Program;
 import interpreter.virtualmachine.VirtualMachine;
 
+import java.io.IOException;
+
 /**
  * <pre>
  *     Interpreter class runs the interpreter:
@@ -26,22 +28,16 @@ public class Interpreter {
         byteCodeLoader = new ByteCodeLoader(codeFile);
     }
 
-    void run() {
+    void run() throws InvalidProgramException {
         CodeTable.init();
         Program program = null;
-        try{
-            program = byteCodeLoader.loadCodes();
-        } catch(InvalidProgramException ex){
-            System.out.println(ex);
-            ex.printStackTrace();
-            System.exit(-2);
-        }
+        program = byteCodeLoader.loadCodes();// may cause exception
         program.resolveAddress();
         VirtualMachine virtualMachine = new VirtualMachine(program);
         virtualMachine.executeProgram();
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InvalidProgramException {
 
         if (args.length == 0) {
             System.out.println("***Incorrect usage, try: java interpreter.Interpreter <file>");
