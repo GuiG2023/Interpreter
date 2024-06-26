@@ -39,19 +39,18 @@ public final class ByteCodeLoader {
                 String bytecodename = tokens[0];
                 String classname = CodeTable.getClassName(bytecodename);
                 Class<?> c = Class.forName("interpreter.bytecodes." + classname);
-                System.out.println(c);
+//                System.out.println(c);
                 ByteCode bc = (ByteCode) c.getDeclaredConstructor().newInstance();
-                System.out.println(bc);
                 bc.init(Arrays.asList(tokens));
                 program.addCode(bc);
-                break;
+                System.out.println(bc);
             }
         } catch (IOException e) {
             System.out.println(e);
-            throw new InvalidProgramException(e,"Failed to read the source code");
+            throw new InvalidProgramException(e, "Failed to read the source code");
         } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException |
                  NoSuchMethodException e) {
-            throw new InvalidProgramException(e,"Failed to load bytecode");
+            throw new InvalidProgramException(e, "Failed to load bytecode");
         }
 //        try {
 //            br = new BufferedReader(new FileReader(this.codSourceFileName));

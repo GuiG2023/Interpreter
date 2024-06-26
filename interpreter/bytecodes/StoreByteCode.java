@@ -2,48 +2,38 @@ package interpreter.bytecodes;
 
 import interpreter.virtualmachine.VirtualMachine;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 6/22/24 @ 18:52
+ * 6/24/24 @ 10:54
  *
  * @ Author : Guiran LIU
  * Description:
  */
-public class LitByteCode implements ByteCode {
+public class StoreByteCode implements ByteCode{
     private String label;
-    private int value;
+    private int offset;
 
     @Override
     public void excute(VirtualMachine vm) {
-        vm.push(this.value);
+        vm.store(this.offset);
     }
 
     @Override
     public void init(List<String> args) {
-        this.value = Integer.parseInt(args.get(1));
+        this.offset = Integer.parseInt(args.get(1));
         if (args.size() > 2) {
             this.label = args.get(2);
         }
+
     }
 
     @Override
     public String toString() {
-        String retVal = "LIT " + this.value;
+        String retVal = "STORE " + this.offset;
         if (this.label != null) {
             retVal += " " + this.label + "\t\tint " + this.label;
         }
         return retVal;
     }
-
-//    public static void main(String[] args) {
-//        LitByteCode lc = new LitByteCode();
-//        List<String> bcargs = new ArrayList<>();
-//        bcargs.add("LIT");
-//        bcargs.add("1");
-//        bcargs.add("i");
-//        lc.init(bcargs);
-//        System.out.println(lc);
-//    }
 }

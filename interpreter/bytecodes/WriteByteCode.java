@@ -5,33 +5,25 @@ import interpreter.virtualmachine.VirtualMachine;
 import java.util.List;
 
 /**
- * 6/22/24 @ 18:52
+ * 6/24/24 @ 11:43
  *
  * @ Author : Guiran LIU
  * Description:
  */
-public class GotoByteCode implements ByteCode {
-    private String label;
-    private int targetAddress;
-
+public class WriteByteCode implements ByteCode{
     @Override
     public void excute(VirtualMachine vm) {
-        vm.setAddress(targetAddress);
-
+        int topValue = vm.peek();
+        System.out.println(topValue);
     }
-
 
     @Override
     public void init(List<String> args) {
-        if (!args.isEmpty()) {
-            this.label = args.getLast();
-        }
-
 
     }
 
     @Override
     public String toString() {
-        return "GoTo " + this.label;
+        return "WRITE";
     }
 }

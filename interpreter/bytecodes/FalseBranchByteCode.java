@@ -5,33 +5,30 @@ import interpreter.virtualmachine.VirtualMachine;
 import java.util.List;
 
 /**
- * 6/22/24 @ 18:52
+ * 6/24/24 @ 10:54
  *
  * @ Author : Guiran LIU
  * Description:
  */
-public class GotoByteCode implements ByteCode {
+public class FalseBranchByteCode implements ByteCode {
     private String label;
     private int targetAddress;
 
     @Override
     public void excute(VirtualMachine vm) {
-        vm.setAddress(targetAddress);
-
+        int value = vm.pop();
+        if (value == 0){
+            vm.setAddress(targetAddress);
+        }
     }
-
 
     @Override
     public void init(List<String> args) {
-        if (!args.isEmpty()) {
-            this.label = args.getLast();
-        }
-
-
+        this.label = args.getLast();
     }
 
     @Override
     public String toString() {
-        return "GoTo " + this.label;
+        return "FalseBranch "+ label;
     }
 }

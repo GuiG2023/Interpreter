@@ -23,6 +23,19 @@ public final class CodeTable {
         CodeTable.codeTable.put("GOTO", "GotoByteCode");
         CodeTable.codeTable.put("LIT", "LitByteCode");
         CodeTable.codeTable.put("HALT", "HaltByteCode");
+        CodeTable.codeTable.put("POP", "PopByteCode");
+        CodeTable.codeTable.put("FALSEBRANCH", "FalseBranchByteCode");
+        CodeTable.codeTable.put("STORE", "StoreByteCode");
+        CodeTable.codeTable.put("LOAD", "LoadByteCode");
+        CodeTable.codeTable.put("ARGS", "ArgsByteCode");
+        CodeTable.codeTable.put("CALL", "CallByteCode");
+        CodeTable.codeTable.put("RETURN", "ReturnByteCode");
+        CodeTable.codeTable.put("BOP", "BopByteCode");
+        CodeTable.codeTable.put("READ", "ReadByteCode");
+        CodeTable.codeTable.put("WRITE", "WriteByteCode");
+        CodeTable.codeTable.put("LABEL", "LabelByteCode");
+        CodeTable.codeTable.put("VERBOSE", "VerboseByteCode");
+
     }
 
     /**

@@ -10,14 +10,19 @@ import java.util.List;
  * @ Author : Guiran LIU
  * Description:
  */
-public class HaltByteCode implements ByteCode{
-    @Override
-    public void excute(VirtualMachine vm) {
-
-    }
-
+public class HaltByteCode implements ByteCode {
     @Override
     public void init(List<String> args) {
 
     }
+    @Override
+    public void excute(VirtualMachine vm) {
+        System.out.println("Executing HALT ByteCode");
+        vm.halt();
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Halt";
+//    }
 }

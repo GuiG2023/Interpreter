@@ -106,6 +106,10 @@ class RunTimeStack {
             throw new IllegalArgumentException("！！cannot load element from outside of current frame!");
         }
         int index = framePointer.peek() + offsetInFrame;
+        if (index >= runTimeStack.size()) {
+            throw new IndexOutOfBoundsException("out of bounds");
+        }
+//        System.out.println(index);
         int val = runTimeStack.get(index);
         this.push(val);
         return val;
@@ -141,6 +145,15 @@ class RunTimeStack {
 
     public void args(int numArgs) {
         newFrameAt(numArgs);
+    }
+
+    public int getArgs() {
+        int frameStart = framePointer.peek();
+        if (frameStart < runTimeStack.size()) {
+            return runTimeStack.get(frameStart);
+        } else {
+            throw new IndexOutOfBoundsException("No arguments available in the current frame.");
+        }
     }
 
 
@@ -189,5 +202,10 @@ class RunTimeStack {
         System.out.println(rts.verboseDisplay());
 
 
+    }
+
+    public boolean isAtFrameBoundary() {
+        int frameIndex = runTimeStack.getLast();
+        return framePointer.contains(frameIndex);
     }
 }

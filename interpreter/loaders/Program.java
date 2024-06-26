@@ -4,6 +4,7 @@ import interpreter.bytecodes.ByteCode;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class Program {
 
     private List<ByteCode> program;
@@ -19,23 +20,29 @@ public class Program {
 
     /**
      * Gets the size of the current program.
+     *
      * @return size of program
      */
     public int getSize() {
-        return 0;
+        return program.size();
     }
 
     /**
      * Grabs an instance of a bytecode at an index.
+     *
      * @param programCounter index of bytecode to get.
      * @return a bytecode.
      */
     public ByteCode getCode(int programCounter) {
+        if (programCounter < program.size()) {
+            return program.get(programCounter);
+        }
         return null;
     }
 
     /**
      * Adds a bytecode instance to the Program List.
+     *
      * @param c bytecode to be added
      */
     public void addCode(ByteCode c) {
