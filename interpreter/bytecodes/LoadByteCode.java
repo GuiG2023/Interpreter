@@ -33,6 +33,11 @@ public class LoadByteCode implements ByteCode{
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         String retVal = "Load " + this.offset;
         if (this.label != null) {

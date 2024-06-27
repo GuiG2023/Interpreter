@@ -29,6 +29,11 @@ public class VerboseByteCode implements ByteCode{
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "VERBOSE " + verboseValue;
     }

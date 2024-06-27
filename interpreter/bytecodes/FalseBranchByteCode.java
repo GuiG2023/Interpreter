@@ -14,10 +14,12 @@ public class FalseBranchByteCode implements ByteCode {
     private String label;
     private int targetAddress;
 
+    private int value;
+
     @Override
     public void excute(VirtualMachine vm) {
-        int value = vm.pop();
-        if (value == 0){
+        value = vm.pop();
+        if (value == 0) {
             vm.setAddress(targetAddress);
         }
     }
@@ -28,8 +30,13 @@ public class FalseBranchByteCode implements ByteCode {
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return value == 0;
+    }
+
+    @Override
     public String toString() {
-        return "FALSEBRANCH "+ label;
+        return "FALSEBRANCH " + label;
     }
 
     public void setTargetAddress(int targetAddress) {
@@ -39,4 +46,6 @@ public class FalseBranchByteCode implements ByteCode {
     public String getLabel() {
         return label;
     }
+
+
 }

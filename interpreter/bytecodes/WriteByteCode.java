@@ -23,6 +23,11 @@ public class WriteByteCode implements ByteCode{
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "WRITE";
     }

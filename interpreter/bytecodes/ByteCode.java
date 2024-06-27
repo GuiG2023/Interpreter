@@ -13,4 +13,6 @@ import java.util.List;
 public interface ByteCode {
     void excute(VirtualMachine vm);
     void init(List<String> args);
+
+    boolean modifiesProgramCounter();
 }

@@ -15,6 +15,12 @@ public class HaltByteCode implements ByteCode {
     public void init(List<String> args) {
 
     }
+
+    @Override
+    public boolean modifiesProgramCounter() {
+        return false;
+    }
+
     @Override
     public void excute(VirtualMachine vm) {
         //System.out.println("Executing HALT ByteCode");

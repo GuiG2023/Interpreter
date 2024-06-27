@@ -34,6 +34,11 @@ public class ReturnByteCode implements ByteCode {
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "RETURN ";
     }

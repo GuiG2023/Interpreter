@@ -3,6 +3,7 @@ package interpreter.bytecodes;
 import interpreter.virtualmachine.VirtualMachine;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 6/24/24 @ 11:02
@@ -15,14 +16,19 @@ public class CallByteCode implements ByteCode {
     private int targetAddress;
 
     private String baseId;
+    private List<Integer> args;
 
     private int numArgs;
+
 
     @Override
     public void excute(VirtualMachine vm) {
         vm.pushReturnAddress(vm.getProgramCounter() + 1);
         vm.setProgramCounter(targetAddress);
-       // this.numArgs = vm.getNextCallNumArgs();
+        this.args = vm.getArgsForNextCall();
+        numArgs = vm.getNextCallNumArgs();
+
+
     }
 
     @Override
@@ -32,11 +38,16 @@ public class CallByteCode implements ByteCode {
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return true;
+    }
+
+    @Override
     public String toString() {// not sure
-        if(numArgs == 0){
-            return "CALL " + label + " " + baseId +"("+")";
+        if (numArgs == 0) {
+            return "CALL " + label + " " + baseId + "(" + ")";
         }
-        return "CALL " + label + " " + baseId +"("+ numArgs + ")";
+        return "CALL " + label + " " + baseId +"(" + args.stream().map(Object::toString).collect(Collectors.joining(", "))+ ")";
     }
 
     public void setTargetAddress(int targetAddress) {

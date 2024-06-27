@@ -1,5 +1,6 @@
 package interpreter.virtualmachine;
 
+import java.util.List;
 import java.util.Stack;
 
 import interpreter.bytecodes.ByteCode;
@@ -12,7 +13,7 @@ public class VirtualMachine {
     private Program program;
     private int programCounter;
     private boolean isRunning;
-    private boolean verboseMode = true;// test verbose mode
+    private boolean verboseMode;// test verbose mode
 
 
     public VirtualMachine(Program program) {
@@ -27,14 +28,17 @@ public class VirtualMachine {
         while (isRunning) {
             ByteCode code = program.getCode(programCounter);
             if (code != null) {
-                System.out.println("Executing: " + code);
+                //System.out.println("Executing: " + code);
                 code.excute(this);
                 if (verboseMode) {
                     String postState = runTimeStack.verboseDisplay(); // State after execution
                     System.out.println(code); // Print the executed ByteCode
                     System.out.println(postState);
                 }
-                programCounter++;
+
+                if (!code.modifiesProgramCounter()) {
+                    programCounter++;  // 只有当当前执行的字节码不自行修改程序计数器时才递增
+                }
             } else {
                 isRunning = false;
                 System.out.println("Program halted");
@@ -119,5 +123,17 @@ public class VirtualMachine {
 
     public void newFrameAt(int numArgs) {
         this.runTimeStack.newFrameAt(numArgs);
+    }
+
+    public void setNextCallNumArgs(int numArgs) {
+        runTimeStack.setNextCallNumArgs(numArgs);
+    }
+
+    public List<Integer> getArgsForNextCall() {
+        return runTimeStack.getArgsForNextCall();
+    }
+
+    public int getNextCallNumArgs() {
+        return runTimeStack.getNextCallNumArgs();
     }
 }

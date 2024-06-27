@@ -29,6 +29,11 @@ public class LitByteCode implements ByteCode {
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         String retVal = "LIT " + this.value;
         if (this.label != null) {

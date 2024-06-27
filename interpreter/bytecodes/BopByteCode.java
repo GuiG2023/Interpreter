@@ -17,8 +17,8 @@ public class BopByteCode implements ByteCode {
     @Override
     public void excute(VirtualMachine vm) {
         int result;
+        int value2 = vm.pop();// ??just compare from left to right?
         int value1 = vm.pop();
-        int value2 = vm.pop();
         result = switch (operator) {
             case "+" -> value1 + value2;
             case "-" -> value1 - value2;
@@ -42,6 +42,11 @@ public class BopByteCode implements ByteCode {
     @Override
     public void init(List<String> args) {
         this.operator = args.getLast();
+    }
+
+    @Override
+    public boolean modifiesProgramCounter() {
+        return false;
     }
 
     @Override

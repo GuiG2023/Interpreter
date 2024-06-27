@@ -26,6 +26,11 @@ public class LabelByteCode implements ByteCode {
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "LABEL " + this.label;
     }

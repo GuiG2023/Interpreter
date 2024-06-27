@@ -31,6 +31,11 @@ public class GotoByteCode implements ByteCode {
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "GOTO " + this.label;
     }

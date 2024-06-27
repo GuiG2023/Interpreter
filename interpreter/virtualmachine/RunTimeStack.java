@@ -22,6 +22,8 @@ class RunTimeStack {
      * record (frame) when calling functions.
      */
 
+    private int nextCallNumArgs = 0;
+
     public RunTimeStack() {
         runTimeStack = new ArrayList<>();
         framePointer = new Stack<>();
@@ -40,10 +42,18 @@ class RunTimeStack {
         StringBuilder sb = new StringBuilder();
         int start = 0;
         for (int i = 1; i < framePointer.size(); i++) {
-            sb.append(runTimeStack.subList(start, framePointer.get(i))).append(" ");
-            start = framePointer.get(i); // update new start of the frame
+            int end = framePointer.get(i);
+            // 确保end不超出runTimeStack的大小
+            if (end > runTimeStack.size()) {
+                end = runTimeStack.size();
+            }
+            sb.append(runTimeStack.subList(start, end)).append(" ");
+            start = framePointer.get(i); // 更新下一帧的开始位置
         }
-        sb.append(runTimeStack.subList(start, runTimeStack.size()));
+        // 同样，确保开始索引在范围内
+        if (start <= runTimeStack.size()) {
+            sb.append(runTimeStack.subList(start, runTimeStack.size()));
+        }
         return sb.toString();
     }
 
@@ -135,6 +145,7 @@ class RunTimeStack {
         }
         int newFrameIndex = runTimeStack.size() - offsetFromTopOfRunStack;
         framePointer.push(newFrameIndex);
+        nextCallNumArgs = 0;
 
     }
 
@@ -222,4 +233,22 @@ class RunTimeStack {
 
     }
 
+    public void setNextCallNumArgs(int numArgs) {
+         nextCallNumArgs = numArgs;
+    }
+
+    public int getNextCallNumArgs() {
+        return nextCallNumArgs;
+    }
+
+
+
+    public List<Integer> getArgsForNextCall() {
+        List<Integer> args = new ArrayList<>();
+        int startIndex = runTimeStack.size() - nextCallNumArgs;
+        for (int i = startIndex; i < runTimeStack.size(); i++) {
+            args.add(runTimeStack.get(i));
+        }
+        return args;
+    }
 }

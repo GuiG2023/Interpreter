@@ -32,6 +32,11 @@ public class PopByteCode implements ByteCode{
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "POP " + this.count;
     }

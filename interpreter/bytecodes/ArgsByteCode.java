@@ -15,6 +15,7 @@ public class ArgsByteCode implements ByteCode{
     @Override
     public void excute(VirtualMachine vm) {
         vm.newFrameAt(numArgs);
+        vm.setNextCallNumArgs(numArgs);
     }
 
     @Override
@@ -25,7 +26,16 @@ public class ArgsByteCode implements ByteCode{
     }
 
     @Override
+    public boolean modifiesProgramCounter() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "ARGS " + numArgs;
+    }
+
+    public int getNumArgs() {
+        return numArgs;
     }
 }
