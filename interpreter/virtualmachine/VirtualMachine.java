@@ -12,7 +12,8 @@ public class VirtualMachine {
     private Program program;
     private int programCounter;
     private boolean isRunning;
-    private boolean verboseMode;
+    private boolean verboseMode = true;// test verbose mode
+
 
     public VirtualMachine(Program program) {
         this.program = program;
@@ -26,12 +27,17 @@ public class VirtualMachine {
         while (isRunning) {
             ByteCode code = program.getCode(programCounter);
             if (code != null) {
-//                System.out.println("Executing ByteCode: " + code.getClass().getSimpleName());
+                System.out.println("Executing: " + code);
                 code.excute(this);
+                if (verboseMode) {
+                    String postState = runTimeStack.verboseDisplay(); // State after execution
+                    System.out.println(code); // Print the executed ByteCode
+                    System.out.println(postState);
+                }
                 programCounter++;
             } else {
                 isRunning = false;
-//                System.out.println("after halt");
+                System.out.println("Program halted");
             }
         }
     }
@@ -97,10 +103,21 @@ public class VirtualMachine {
     }
 
     public void setProgramCounter(int address) {
-        this.returnAddress.push(address);
+        this.programCounter = address;
     }
 
     public void setVerboseMode(boolean verboseMode) {
         this.verboseMode = verboseMode;
+    }
+
+    public void pushReturnAddress(int address) {
+        this.returnAddress.push(address);
+    }
+
+
+
+
+    public void newFrameAt(int numArgs) {
+        this.runTimeStack.newFrameAt(numArgs);
     }
 }

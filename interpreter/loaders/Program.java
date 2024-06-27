@@ -1,9 +1,11 @@
 package interpreter.loaders;
 
-import interpreter.bytecodes.ByteCode;
+import interpreter.bytecodes.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Program {
 
@@ -60,6 +62,32 @@ public class Program {
      * **** METHOD SIGNATURE CANNOT BE CHANGED *****
      */
     public void resolveAddress() {
+        //create a map to record all labels, tyring to record all labels
+
+        Map<String, Integer> labelAddresses = new HashMap<>();
+
+        //first iteration to record all labels
+        for (int i = 0; i < program.size(); i++) {
+            ByteCode byteCode = program.get(i);
+            if (byteCode instanceof LabelByteCode labelByteCode) {
+                labelAddresses.put(labelByteCode.getLabel(), i);
+            }
+        }
+
+
+        //second iteration to resolve the address that some method need
+        for (ByteCode byteCode : program) {
+            if (byteCode instanceof GotoByteCode gotoByteCode) {
+                gotoByteCode.setTargetAddress(labelAddresses.get(gotoByteCode.getLabel()));
+            } else if (byteCode instanceof CallByteCode callByteCode) {
+                callByteCode.setTargetAddress(labelAddresses.get(callByteCode.getLabel()));
+            } else if (byteCode instanceof FalseBranchByteCode falseBranchByteCode) {
+                falseBranchByteCode.setTargetAddress(labelAddresses.get(falseBranchByteCode.getLabel()));
+            }
+        }
+
+
+
 
     }
 }   

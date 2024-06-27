@@ -14,16 +14,18 @@ public class ArgsByteCode implements ByteCode{
     private int numArgs;
     @Override
     public void excute(VirtualMachine vm) {
-       vm.args(numArgs);
+        vm.newFrameAt(numArgs);
     }
 
     @Override
     public void init(List<String> args) {
-        this.numArgs = Integer.parseInt(args.getLast());
+        if (args != null && !args.isEmpty()) {
+            this.numArgs = Integer.parseInt(args.get(1));
+        }
     }
 
     @Override
     public String toString() {
-        return "Args " + numArgs;
+        return "ARGS " + numArgs;
     }
 }

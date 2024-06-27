@@ -15,18 +15,22 @@ public class LabelByteCode implements ByteCode {
 
     @Override
     public void excute(VirtualMachine vm) {
-        if (vm.isVerbose()) {
-            System.out.println(this.toString());
-        }
+
     }
 
     @Override
     public void init(List<String> args) {
-        this.label = args.getLast();
+        if (!args.isEmpty()) {
+            this.label = args.getLast();
+        }
     }
 
     @Override
     public String toString() {
         return "LABEL " + this.label;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

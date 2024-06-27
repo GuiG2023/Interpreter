@@ -20,9 +20,9 @@ public class CallByteCode implements ByteCode {
 
     @Override
     public void excute(VirtualMachine vm) {
-        vm.setAddress(vm.getProgramCounter());
-        vm.setAddress(targetAddress);
-        this.numArgs = vm.getArgs();
+        vm.pushReturnAddress(vm.getProgramCounter() + 1);
+        vm.setProgramCounter(targetAddress);
+       // this.numArgs = vm.getNextCallNumArgs();
     }
 
     @Override
@@ -33,6 +33,17 @@ public class CallByteCode implements ByteCode {
 
     @Override
     public String toString() {// not sure
+        if(numArgs == 0){
+            return "CALL " + label + " " + baseId +"("+")";
+        }
         return "CALL " + label + " " + baseId +"("+ numArgs + ")";
+    }
+
+    public void setTargetAddress(int targetAddress) {
+        this.targetAddress = targetAddress;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

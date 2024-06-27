@@ -10,13 +10,15 @@ import java.util.List;
  * @ Author : Guiran LIU
  * Description:
  */
-public class StoreByteCode implements ByteCode{
+public class StoreByteCode implements ByteCode {
     private String label;
     private int offset;
+    private int value;
+
 
     @Override
     public void excute(VirtualMachine vm) {
-        vm.store(this.offset);
+        this.value = vm.store(this.offset);
     }
 
     @Override
@@ -32,7 +34,7 @@ public class StoreByteCode implements ByteCode{
     public String toString() {
         String retVal = "STORE " + this.offset;
         if (this.label != null) {
-            retVal += " " + this.label + "\t\tint " + this.label;
+            retVal += " " + this.label + "\t\t" + this.label + " = " + this.value;
         }
         return retVal;
     }

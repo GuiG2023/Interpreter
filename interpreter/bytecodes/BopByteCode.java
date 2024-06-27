@@ -19,46 +19,21 @@ public class BopByteCode implements ByteCode {
         int result;
         int value1 = vm.pop();
         int value2 = vm.pop();
-        switch (operator) {
-            case "+":
-                result = value1 + value2;
-                break;
-            case "-":
-                result = value1 - value2;
-                break;
-            case "*":
-                result = value1 * value2;
-                break;
-            case "/":
-                result = value1 / value2;
-                break;
-            case "==":
-                result = (value1 == value2) ? 1 : 0;
-                break;
-            case "!=":
-                result = (value1 != value2) ? 1 : 0;
-                break;
-            case "<=":
-                result = (value1 <= value2) ? 1 : 0;
-                break;
-            case "<":
-                result = (value1 < value2) ? 1 : 0;
-                break;
-            case ">=":
-                result = (value1 >= value2) ? 1 : 0;
-                break;
-            case ">":
-                result = (value1 > value2) ? 1 : 0;
-                break;
-            case "&":
-                result = (value1 != 0 && value2 != 0) ? 1 : 0;
-                break;
-            case "|":
-                result = (value1 != 0 || value2 != 0) ? 1 : 0;
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid operator: " + operator);
-        }
+        result = switch (operator) {
+            case "+" -> value1 + value2;
+            case "-" -> value1 - value2;
+            case "*" -> value1 * value2;
+            case "/" -> value1 / value2;
+            case "==" -> (value1 == value2) ? 1 : 0;
+            case "!=" -> (value1 != value2) ? 1 : 0;
+            case "<=" -> (value1 <= value2) ? 1 : 0;
+            case "<" -> (value1 < value2) ? 1 : 0;
+            case ">=" -> (value1 >= value2) ? 1 : 0;
+            case ">" -> (value1 > value2) ? 1 : 0;
+            case "&" -> (value1 != 0 && value2 != 0) ? 1 : 0;
+            case "|" -> (value1 != 0 || value2 != 0) ? 1 : 0;
+            default -> throw new IllegalArgumentException("Invalid operator: " + operator);
+        };
 
         vm.push(result);
 

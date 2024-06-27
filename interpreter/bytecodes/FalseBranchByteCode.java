@@ -29,6 +29,14 @@ public class FalseBranchByteCode implements ByteCode {
 
     @Override
     public String toString() {
-        return "FalseBranch "+ label;
+        return "FALSEBRANCH "+ label;
+    }
+
+    public void setTargetAddress(int targetAddress) {
+        this.targetAddress = targetAddress;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

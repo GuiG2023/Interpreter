@@ -16,7 +16,7 @@ public class GotoByteCode implements ByteCode {
 
     @Override
     public void excute(VirtualMachine vm) {
-        vm.setAddress(targetAddress);
+        vm.setProgramCounter(targetAddress);
 
     }
 
@@ -32,6 +32,18 @@ public class GotoByteCode implements ByteCode {
 
     @Override
     public String toString() {
-        return "GoTo " + this.label;
+        return "GOTO " + this.label;
+    }
+
+    public int getTargetAddress() {
+        return targetAddress;
+    }
+
+    public void setTargetAddress(int targetAddress) {
+        this.targetAddress = targetAddress;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

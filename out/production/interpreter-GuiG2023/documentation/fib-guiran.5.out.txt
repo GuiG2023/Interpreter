@@ -1,0 +1,60 @@
+GoTo start<<1>>
+[]
+LIT 0 x		int x
+[0]
+GoTo continue<<3>>
+[0]
+LIT 0 k		int k
+[0, 0]
+LIT 5
+[0, 0, 5]
+STORE 0 x		x = 5
+[5, 0]
+Args 0
+[5, 0] []
+CALL Read Read(0)
+[5, 0] []
+Please enter an integer: 5
+READ
+[5, 0] [5]
+RETURN null EXIT null
+[5, 0] [5]
+CALL fib<<2>> fib(1)
+[5, 0] [5]
+Load 0 n		int n
+[5, 0] [5, 5]
+LIT 1
+[5, 0] [5, 5, 1]
+Bop <=
+[5, 0] [5, 1]
+FALSEBRANCH else<<4>>
+[5, 0] [5]
+LIT 1
+[5, 0] [5, 1]
+RETURN fib<<2>> EXIT fib
+[5, 0] [5, 1]
+CALL Write Write(2)
+[5, 0] [5, 1]
+Load 0 dummyFormal		int dummyFormal
+[5, 0] [5, 1, 5]
+5
+WRITE
+[5, 0] [5, 1, 5]
+RETURN null EXIT null
+[5, 0] [5, 1, 5]
+LIT 0 x		int x
+[5, 0] [5, 1, 5, 0]
+LIT 7
+[5, 0] [5, 1, 5, 0, 7]
+STORE 2 x		x = 7
+[5, 0] [5, 1, 7, 0]
+LIT 8
+[5, 0] [5, 1, 7, 0, 8]
+STORE 2 x		x = 8
+[5, 0] [5, 1, 8, 0]
+POP 1
+[5, 0] [5, 1, 8]
+POP 2
+[5, 0] [5]
+Halt
+[5, 0] [5]

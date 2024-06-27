@@ -17,12 +17,12 @@ public class HaltByteCode implements ByteCode {
     }
     @Override
     public void excute(VirtualMachine vm) {
-        System.out.println("Executing HALT ByteCode");
+        //System.out.println("Executing HALT ByteCode");
         vm.halt();
     }
 
-//    @Override
-//    public String toString() {
-//        return "Halt";
-//    }
+    @Override
+    public String toString() {
+        return "Halt";
+    }
 }

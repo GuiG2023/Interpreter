@@ -15,10 +15,10 @@ public class PopByteCode implements ByteCode{
     @Override
     public void excute(VirtualMachine vm) {
         for (int i = 0; i < count; i++) {
-            if (!vm.isAtFrameBoundary() && !vm.isEmpty()) {
+            if (!vm.isAtFrameBoundary()) {
                 vm.pop();
             } else {
-                //System.out.println("out of bounds");
+                System.out.println("out of bounds");
                 break;
             }
         }

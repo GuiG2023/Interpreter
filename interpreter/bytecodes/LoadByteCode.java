@@ -16,7 +16,11 @@ public class LoadByteCode implements ByteCode{
 
     @Override
     public void excute(VirtualMachine vm) {
-        vm.load(this.offset);
+        try {
+            vm.load(this.offset);
+        } catch (Exception e) {
+            System.err.println("Load operation failed: " + e.getMessage());
+        }
     }
 
     @Override

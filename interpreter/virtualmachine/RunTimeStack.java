@@ -85,10 +85,16 @@ class RunTimeStack {
      */
     public int store(int offsetInFrame) {
 
+        if (framePointer.isEmpty()) {
+            throw new IllegalStateException("Frame pointer stack is empty.");
+        }
+        if (runTimeStack.isEmpty()) {
+            throw new EmptyStackException();
+        }
         int val = this.pop();
         int index = framePointer.peek() + offsetInFrame;
-        if (offsetInFrame < 0 || index > runTimeStack.size() - 1) {
-            throw new IllegalArgumentException(" ！！cannot store out of the current frame!");
+        if (offsetInFrame < 0 || index >= runTimeStack.size()) {
+            throw new IllegalArgumentException("Cannot store out of the current frame!");
         }
         runTimeStack.set(index, val);
         return val;
@@ -102,14 +108,16 @@ class RunTimeStack {
      * @return item just loaded into the offset
      */
     public int load(int offsetInFrame) {
+        if (framePointer.isEmpty()) {
+            throw new EmptyStackException();
+        }
         if (offsetInFrame < 0) {
-            throw new IllegalArgumentException("！！cannot load element from outside of current frame!");
+            throw new IllegalArgumentException("Cannot load element from outside of current frame!");
         }
         int index = framePointer.peek() + offsetInFrame;
         if (index >= runTimeStack.size()) {
-            throw new IndexOutOfBoundsException("out of bounds");
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + runTimeStack.size());
         }
-//        System.out.println(index);
         int val = runTimeStack.get(index);
         this.push(val);
         return val;
@@ -136,11 +144,13 @@ class RunTimeStack {
      */
 
     public void popFrame() {
+        if (framePointer.isEmpty()) {
+            throw new IllegalStateException("Frame pointer stack is empty.");
+        }
         int startIndex = framePointer.pop(); // the boundary
         while (runTimeStack.size() > startIndex) {
-            runTimeStack.remove(runTimeStack.getLast()); // pop to the boundary
+            runTimeStack.removeLast(); // More robust and clear
         }
-
     }
 
     public void args(int numArgs) {
@@ -148,12 +158,15 @@ class RunTimeStack {
     }
 
     public int getArgs() {
-        int frameStart = framePointer.peek();
-        if (frameStart < runTimeStack.size()) {
-            return runTimeStack.get(frameStart);
-        } else {
+        if (framePointer.isEmpty() || runTimeStack.isEmpty()) {
             throw new IndexOutOfBoundsException("No arguments available in the current frame.");
         }
+        int frameStart = framePointer.peek();
+        return runTimeStack.size() - frameStart;
+    }
+
+    public boolean isAtFrameBoundary() {
+        return !framePointer.isEmpty() && framePointer.peek() == runTimeStack.size();
     }
 
 
@@ -183,7 +196,12 @@ class RunTimeStack {
 
 
         rts.framePointer.forEach(System.out::println);
+        System.out.println(rts.framePointer.peek());
+        System.out.println(rts.runTimeStack.size());
         rts.load(0); // load 12
+        System.out.println(rts.verboseDisplay());
+
+        rts.store(0);
         System.out.println(rts.verboseDisplay());
 
         rts.pop();
@@ -204,8 +222,4 @@ class RunTimeStack {
 
     }
 
-    public boolean isAtFrameBoundary() {
-        int frameIndex = runTimeStack.getLast();
-        return framePointer.contains(frameIndex);
-    }
 }
