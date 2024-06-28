@@ -18,7 +18,6 @@ public class PopByteCode implements ByteCode{
             if (!vm.isAtFrameBoundary()) {
                 vm.pop();
             } else {
-                System.out.println("out of bounds");
                 break;
             }
         }

@@ -41,7 +41,7 @@ public class LoadByteCode implements ByteCode{
     public String toString() {
         String retVal = "Load " + this.offset;
         if (this.label != null) {
-            retVal += " " + this.label + "\t\tint " + this.label;
+            retVal += " " + "\t< load" + " " + this.label+">";
         }
         return retVal;
     }
