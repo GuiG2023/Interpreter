@@ -16,7 +16,7 @@ public class LitByteCode implements ByteCode {
     private int value;
 
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         vm.push(this.value);
     }
 

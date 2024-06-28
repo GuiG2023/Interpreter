@@ -17,7 +17,7 @@ public class StoreByteCode implements ByteCode {
 
 
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         this.value = vm.store(this.offset);
     }
 

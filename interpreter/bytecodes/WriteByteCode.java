@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class WriteByteCode implements ByteCode{
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         int topValue = vm.peek();
         System.out.println(topValue);
     }

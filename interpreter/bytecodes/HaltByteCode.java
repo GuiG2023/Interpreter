@@ -22,7 +22,7 @@ public class HaltByteCode implements ByteCode {
     }
 
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         //System.out.println("Executing HALT ByteCode");
         vm.halt();
     }

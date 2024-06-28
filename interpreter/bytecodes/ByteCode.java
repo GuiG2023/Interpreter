@@ -11,7 +11,7 @@ import java.util.List;
  * Description:
  */
 public interface ByteCode {
-    void excute(VirtualMachine vm);
+    void execute(VirtualMachine vm);
     void init(List<String> args);
 
     boolean modifiesProgramCounter();

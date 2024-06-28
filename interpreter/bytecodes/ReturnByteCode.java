@@ -17,7 +17,7 @@ public class ReturnByteCode implements ByteCode {
     private int returnValue;
 
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         returnValue = vm.peek();
         vm.popFrame();
         vm.push(returnValue);

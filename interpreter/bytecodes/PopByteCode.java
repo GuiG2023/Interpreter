@@ -13,7 +13,7 @@ import java.util.List;
 public class PopByteCode implements ByteCode{
     private int count; // the number of the value that we want to pop from rts
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         for (int i = 0; i < count; i++) {
             if (!vm.isAtFrameBoundary()) {
                 vm.pop();

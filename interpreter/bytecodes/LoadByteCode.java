@@ -15,7 +15,7 @@ public class LoadByteCode implements ByteCode{
     private int offset;
 
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         try {
             vm.load(this.offset);
         } catch (Exception e) {

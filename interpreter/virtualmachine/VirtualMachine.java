@@ -29,7 +29,7 @@ public class VirtualMachine {
             ByteCode code = program.getCode(programCounter);
             if (code != null) {
                 //System.out.println("Executing: " + code);
-                code.excute(this);
+                code.execute(this);
                 if (verboseMode) {
                     String postState = runTimeStack.verboseDisplay(); // State after execution
                     System.out.println(code); // Print the executed ByteCode

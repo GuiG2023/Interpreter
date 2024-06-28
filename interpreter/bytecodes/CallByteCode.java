@@ -22,7 +22,7 @@ public class CallByteCode implements ByteCode {
 
 
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         vm.pushReturnAddress(vm.getProgramCounter() + 1);
         vm.setProgramCounter(targetAddress);
         this.args = vm.getArgsForNextCall();

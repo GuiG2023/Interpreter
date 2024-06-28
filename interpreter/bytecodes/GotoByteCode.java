@@ -15,7 +15,7 @@ public class GotoByteCode implements ByteCode {
     private int targetAddress;
 
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         vm.setProgramCounter(targetAddress);
 
     }

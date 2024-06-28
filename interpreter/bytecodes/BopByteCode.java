@@ -15,7 +15,7 @@ public class BopByteCode implements ByteCode {
     private String operator;
 
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         int result;
         int value2 = vm.pop();// ??just compare from left to right?
         int value1 = vm.pop();

@@ -14,7 +14,7 @@ public class LabelByteCode implements ByteCode {
     private String label;
 
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
 
     }
 

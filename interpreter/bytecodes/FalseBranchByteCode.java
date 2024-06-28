@@ -17,7 +17,7 @@ public class FalseBranchByteCode implements ByteCode {
     private int value;
 
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         value = vm.pop();
         if (value == 0) {
             vm.setAddress(targetAddress);

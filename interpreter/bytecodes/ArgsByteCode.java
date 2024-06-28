@@ -13,7 +13,7 @@ import java.util.List;
 public class ArgsByteCode implements ByteCode{
     private int numArgs;
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         vm.newFrameAt(numArgs);
         vm.setNextCallNumArgs(numArgs);
     }

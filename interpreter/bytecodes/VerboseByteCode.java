@@ -13,7 +13,7 @@ import java.util.List;
 public class VerboseByteCode implements ByteCode{
     private String verboseValue;
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         if ("ON".equalsIgnoreCase(verboseValue)) {
             vm.setVerboseMode(true);
         } else if ("OFF".equalsIgnoreCase(verboseValue)) {

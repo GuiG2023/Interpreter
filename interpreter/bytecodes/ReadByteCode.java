@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class ReadByteCode implements ByteCode {
     @Override
-    public void excute(VirtualMachine vm) {
+    public void execute(VirtualMachine vm) {
         Scanner scanner = new Scanner(System.in);
         int input = 0;
         boolean validInput = false;
